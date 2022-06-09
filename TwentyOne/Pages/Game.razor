@@ -1,0 +1,53 @@
+﻿@page "/game"
+
+@using System.Drawing;
+
+<PageTitle>Twenty One</PageTitle>
+
+<h1>Twenty One</h1>
+
+<div>
+    <button @onclick="Increment">
+        Next Card (@CardNumber)
+    </button>
+</div>
+
+<div>
+    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(@CardImage))" />
+</div>
+
+@code {
+    private byte[] CardImage;
+    private int CardNumber = 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetImageAsync();
+    }
+
+    private async Task Increment()
+    {
+        CardNumber++;
+        await GetImageAsync();
+    }
+
+    private async Task GetImageAsync()
+    {
+        // Create a Bitmap object from a file.
+        Bitmap myBitmap = new Bitmap(@".\Images\card-set-1.jpg");
+
+        int leftMargin = 1;
+        int topMargin = 10;
+        int cardWidth = 114;
+        int cardHeight = 175;
+
+        // Clone a portion of the Bitmap object.
+        Rectangle cloneRect = new Rectangle((leftMargin) + ((CardNumber - 1) * cardWidth), 0, cardWidth, cardHeight);
+        //Rectangle cloneRect = new Rectangle(0, 0, 125, 175);
+        Bitmap cloneBitmap = myBitmap.Clone(cloneRect, myBitmap.PixelFormat);
+
+        ImageConverter converter = new ImageConverter();
+        CardImage = (byte[])converter.ConvertTo(cloneBitmap, typeof(byte[]));
+    }
+
+}
