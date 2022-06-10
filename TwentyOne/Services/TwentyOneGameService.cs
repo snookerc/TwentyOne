@@ -7,7 +7,7 @@
             Hand newGameHand = gameHand;
 
             //
-
+            newGameHand.GenerateNewCardInDeck();
 
             return newGameHand;
         }
@@ -15,6 +15,9 @@
         public async Task<Hand> PlayerTurn(Hand gameHand)
         {
             Hand newGameHand = gameHand;
+
+            //
+            newGameHand.GenerateNewCardInDeck();
 
             return newGameHand;
         }

@@ -14,6 +14,9 @@
     <button @onclick="NextSuitNumber">
         Next Suit (@SuitNumber)
     </button>
+    <button @onclick="Deal">
+        Deal
+    </button>
 </div>
 
 <div>
@@ -28,6 +31,12 @@
     protected override async Task OnInitializedAsync()
     {
         await GetImage(SuitNumber, CardNumber);
+    }
+
+    private async Task Deal()
+    {
+        Hand hand = new Hand();
+
     }
 
     private async Task NextCardNumber()
@@ -78,6 +87,7 @@
         }
         catch (Exception ex)
         {
+            //TODO:
             throw;
         }
     }
