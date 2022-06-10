@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Partials\CardPartialView.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Pages\Partials\CardPartialView.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 

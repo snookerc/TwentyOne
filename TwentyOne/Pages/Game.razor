@@ -1,30 +1,18 @@
 ﻿@page "/game"
 
-@using System.Drawing
-@using TwentyOne.Services
-@using TwentyOne.Pages.Partials
+@using System.Drawing;
+@using TwentyOne.Services;
+@using TwentyOne.Pages.Partials;
 
 <PageTitle>Twenty One</PageTitle>
 
 <h1>Twenty One</h1>
 
 <div>
-    <button @onclick="NextCardNumber">
-        Next Card (@CardNumber)
-    </button>
-    <button @onclick="NextSuitNumber">
-        Next Suit (@SuitNumber)
-    </button>
     <button @onclick="Deal">
         Deal
     </button>
 </div>
-
-@*
-<div>
-    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(@CardImage))" />
-</div>
-*@
 
 <div>
     @foreach (var card in dealerHand.Cards)
@@ -35,74 +23,21 @@
 
 @code {
     private byte[] CardImage = null!;
-    private int CardNumber = 1;
-    private int SuitNumber = 1;
+
     private Hand dealerHand = new Hand();
     private Hand playerHand = new Hand();
 
     protected override async Task OnInitializedAsync()
     {
-        await GetImage(SuitNumber, CardNumber);
+        //await GetImage(SuitNumber, CardNumber);
     }
 
     //TODO:  move these to service
     private async Task Deal()
     {
-        Hand hand = new Hand(2);
+        dealerHand = new Hand(2);
+        playerHand = new Hand(2);
 
-    }
-
-    private async Task NextCardNumber()
-    {
-        if (CardNumber > (Card.MaxCardNumber - 1))
-        {
-            CardNumber = 1;
-        }
-        else
-        {
-            CardNumber++;
-        }
-        await GetImage(SuitNumber, CardNumber);
-    }
-
-    private async Task NextSuitNumber()
-    {
-        if (SuitNumber > (Card.MaxSuitNumber - 1))
-        {
-            SuitNumber = 1;
-        }
-        else
-        {
-            SuitNumber++;
-        }
-        await GetImage(SuitNumber, CardNumber);
-    }
-
-    private async Task GetImage(int suitNumber, int cardNumber)
-    {
-        try
-        {
-            // Create a Bitmap object from a file.
-            Bitmap myBitmap = new Bitmap(@".\Images\card-set-1.jpg");
-
-            int leftMargin = 1;
-            int topMargin = 10;
-            int cardWidth = 114;
-            int cardHeight = 167;
-
-            // Clone a portion of the Bitmap object.
-            Rectangle cloneRect = new Rectangle((leftMargin) + ((cardNumber - 1) * cardWidth), ((suitNumber - 1) * cardHeight), cardWidth, cardHeight);
-            //Rectangle cloneRect = new Rectangle(0, 0, 125, 175);
-            Bitmap cloneBitmap = myBitmap.Clone(cloneRect, myBitmap.PixelFormat);
-
-            ImageConverter converter = new ImageConverter();
-            CardImage = (byte[])converter.ConvertTo(cloneBitmap, typeof(byte[]));
-        }
-        catch (Exception ex)
-        {
-            //TODO:  error logging
-            throw;
-        }
     }
 
 }

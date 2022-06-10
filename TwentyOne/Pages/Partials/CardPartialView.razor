@@ -1,5 +1,4 @@
-﻿@namespace TwentyOne.Pages.Partials
-@using TwentyOne.Services
+﻿@using TwentyOne.Services;
 
 @code
 {
@@ -9,7 +8,7 @@
 
 @if (Card.IsVisible)
 {
-    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(@CardImage))" />
+    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.ImageBytes))" />
 }
 else
 {
