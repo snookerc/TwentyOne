@@ -26,7 +26,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await GetImage();
+        await GetImage(SuitNumber, CardNumber);
     }
 
     private async Task NextCardNumber()
@@ -39,7 +39,7 @@
         {
             CardNumber++;
         }
-        await GetImage();
+        await GetImage(SuitNumber, CardNumber);
     }
 
     private async Task NextSuitNumber()
@@ -52,10 +52,10 @@
         {
             SuitNumber++;
         }
-        await GetImage();
+        await GetImage(SuitNumber, CardNumber);
     }
 
-    private async Task GetImage()
+    private async Task GetImage(int suitNumber, int cardNumber)
     {
         try
         {
@@ -68,7 +68,7 @@
             int cardHeight = 167;
 
             // Clone a portion of the Bitmap object.
-            Rectangle cloneRect = new Rectangle((leftMargin) + ((CardNumber - 1) * cardWidth), ((SuitNumber - 1) * cardHeight), cardWidth, cardHeight);
+            Rectangle cloneRect = new Rectangle((leftMargin) + ((cardNumber - 1) * cardWidth), ((suitNumber - 1) * cardHeight), cardWidth, cardHeight);
             //Rectangle cloneRect = new Rectangle(0, 0, 125, 175);
             Bitmap cloneBitmap = myBitmap.Clone(cloneRect, myBitmap.PixelFormat);
 
