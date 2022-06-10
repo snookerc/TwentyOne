@@ -1,7 +1,8 @@
 ﻿@page "/game"
 
-@using System.Drawing;
+@using System.Drawing
 @using TwentyOne.Services
+@using TwentyOne.Pages.Partials
 
 <PageTitle>Twenty One</PageTitle>
 
@@ -19,23 +20,35 @@
     </button>
 </div>
 
+@*
 <div>
     <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(@CardImage))" />
+</div>
+*@
+
+<div>
+    @foreach (var card in dealerHand.Cards)
+    {
+        <CardPartialView Card="card" />
+    }
 </div>
 
 @code {
     private byte[] CardImage = null!;
     private int CardNumber = 1;
     private int SuitNumber = 1;
+    private Hand dealerHand = new Hand();
+    private Hand playerHand = new Hand();
 
     protected override async Task OnInitializedAsync()
     {
         await GetImage(SuitNumber, CardNumber);
     }
 
+    //TODO:  move these to service
     private async Task Deal()
     {
-        Hand hand = new Hand();
+        Hand hand = new Hand(2);
 
     }
 
@@ -87,7 +100,7 @@
         }
         catch (Exception ex)
         {
-            //TODO:
+            //TODO:  error logging
             throw;
         }
     }

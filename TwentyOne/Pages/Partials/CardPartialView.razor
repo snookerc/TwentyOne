@@ -1,0 +1,17 @@
+﻿@namespace TwentyOne.Pages.Partials
+@using TwentyOne.Services
+
+@code
+{
+    [Parameter]
+    public Card Card { get; set; }
+}
+
+@if (Card.IsVisible)
+{
+    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(@CardImage))" />
+}
+else
+{
+    <img src="images/common/cardBack.png" />
+}
