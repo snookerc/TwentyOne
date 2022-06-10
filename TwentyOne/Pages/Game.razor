@@ -7,8 +7,11 @@
 <h1>Twenty One</h1>
 
 <div>
-    <button @onclick="Increment">
+    <button @onclick="NextCardNumber">
         Next Card (@CardNumber)
+    </button>
+    <button @onclick="NextSuitNumber">
+        Next Suit (@SuitNumber)
     </button>
 </div>
 
@@ -17,37 +20,65 @@
 </div>
 
 @code {
-    private byte[] CardImage;
+    private byte[] CardImage = null!;
     private int CardNumber = 1;
+    private int SuitNumber = 1;
 
     protected override async Task OnInitializedAsync()
     {
-        await GetImageAsync();
+        await GetImage();
     }
 
-    private async Task Increment()
+    private async Task NextCardNumber()
     {
-        CardNumber++;
-        await GetImageAsync();
+        if (CardNumber > 12)
+        {
+            CardNumber = 1;
+        }
+        else
+        {
+            CardNumber++;
+        }
+        await GetImage();
     }
 
-    private async Task GetImageAsync()
+    private async Task NextSuitNumber()
     {
-        // Create a Bitmap object from a file.
-        Bitmap myBitmap = new Bitmap(@".\Images\card-set-1.jpg");
+        if (SuitNumber > 3)
+        {
+            SuitNumber = 1;
+        }
+        else
+        {
+            SuitNumber++;
+        }
+        await GetImage();
+    }
 
-        int leftMargin = 1;
-        int topMargin = 10;
-        int cardWidth = 114;
-        int cardHeight = 175;
+    private async Task GetImage()
+    {
+        try
+        {
+            // Create a Bitmap object from a file.
+            Bitmap myBitmap = new Bitmap(@".\Images\card-set-1.jpg");
 
-        // Clone a portion of the Bitmap object.
-        Rectangle cloneRect = new Rectangle((leftMargin) + ((CardNumber - 1) * cardWidth), 0, cardWidth, cardHeight);
-        //Rectangle cloneRect = new Rectangle(0, 0, 125, 175);
-        Bitmap cloneBitmap = myBitmap.Clone(cloneRect, myBitmap.PixelFormat);
+            int leftMargin = 1;
+            int topMargin = 10;
+            int cardWidth = 114;
+            int cardHeight = 167;
 
-        ImageConverter converter = new ImageConverter();
-        CardImage = (byte[])converter.ConvertTo(cloneBitmap, typeof(byte[]));
+            // Clone a portion of the Bitmap object.
+            Rectangle cloneRect = new Rectangle((leftMargin) + ((CardNumber - 1) * cardWidth), ((SuitNumber - 1) * cardHeight), cardWidth, cardHeight);
+            //Rectangle cloneRect = new Rectangle(0, 0, 125, 175);
+            Bitmap cloneBitmap = myBitmap.Clone(cloneRect, myBitmap.PixelFormat);
+
+            ImageConverter converter = new ImageConverter();
+            CardImage = (byte[])converter.ConvertTo(cloneBitmap, typeof(byte[]));
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
     }
 
 }
