@@ -8,10 +8,18 @@
 
 @if (Card.IsVisible)
 {
-    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
-    @*<audio autoplay><source src="./sounds/CardFlip1.mp3" /></audio>*@
+    <div class="flip-card-inner">
+        <div class="flip-card-front">
+            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
+        </div>
+        <div class="flip-card-back">
+            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+        </div>
+    </div>
 }
 else
 {
-    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+    <div class="flip-card-back">
+        <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+    </div>
 }
