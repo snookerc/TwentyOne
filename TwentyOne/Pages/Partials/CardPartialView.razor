@@ -10,10 +10,14 @@
 {
     <div class="flip-card-inner">
         <div class="flip-card-front">
-            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
+            <div>
+                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
+            </div>
         </div>
         <div class="flip-card-back">
-            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+            <div>
+                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+            </div>
         </div>
     </div>
 }
