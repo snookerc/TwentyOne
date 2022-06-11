@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
 
-namespace TwentyOne.Services
+namespace TwentyOne.Models
 {
     public class Card
     {
         public const int MaxSuitNumber = 4;
         public const int MaxCardNumber = 13;
+        public const int CardBackNumber = 14;
 
         public bool IsVisible { get; set; }
         public int SuitNumber { get; set; }
@@ -14,16 +15,24 @@ namespace TwentyOne.Services
         public Card()
         {
             //TODO:  pull from card stack to avoid getting dup cards, etc.
-            CardNumber = Random.Shared.Next(1, Card.MaxCardNumber);
-            SuitNumber = Random.Shared.Next(1, Card.MaxSuitNumber);
+            CardNumber = Random.Shared.Next(1, MaxCardNumber);
+            SuitNumber = Random.Shared.Next(1, MaxSuitNumber);
             IsVisible = true;
         }
 
-        public byte[] ImageBytes
+        public byte[] GetImageData
         {
             get
             {
                 return GetImage(SuitNumber, CardNumber);
+            }
+        }
+
+        public byte[] GetImageDataForBackOfCard
+        {
+            get
+            {
+                return GetImage(SuitNumber, CardBackNumber);
             }
         }
 
@@ -40,7 +49,7 @@ namespace TwentyOne.Services
                 int cardHeight = 167;
 
                 // Clone a portion of the Bitmap object.
-                Rectangle cloneRect = new Rectangle((leftMargin) + ((cardNumber - 1) * cardWidth), ((suitNumber - 1) * cardHeight), cardWidth, cardHeight);
+                Rectangle cloneRect = new Rectangle(leftMargin + (cardNumber - 1) * cardWidth, (suitNumber - 1) * cardHeight, cardWidth, cardHeight);
                 Bitmap cloneBitmap = myBitmap.Clone(cloneRect, myBitmap.PixelFormat);
 
                 ImageConverter converter = new ImageConverter();
@@ -52,5 +61,6 @@ namespace TwentyOne.Services
                 throw;
             }
         }
+    
     }
 }

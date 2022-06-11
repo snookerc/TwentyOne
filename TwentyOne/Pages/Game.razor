@@ -2,6 +2,7 @@
 
 @using System.Drawing;
 @using TwentyOne.Services;
+@using TwentyOne.Models;
 @using TwentyOne.Pages.Partials;
 
 <PageTitle>Twenty One</PageTitle>
@@ -15,7 +16,13 @@
 </div>
 
 <div>
+    <audio autoplay controls><source src="/Sounds/CardShuffle1.mp3" /></audio>
+
     @foreach (var card in dealerHand.Cards)
+    {
+        <CardPartialView Card="card" />
+    }
+    @foreach (var card in playerHand.Cards)
     {
         <CardPartialView Card="card" />
     }
@@ -35,6 +42,7 @@
     //TODO:  move these to service
     private async Task Deal()
     {
+
         dealerHand = new Hand(2);
         playerHand = new Hand(2);
 

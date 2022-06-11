@@ -1,4 +1,6 @@
-﻿namespace TwentyOne.Services
+﻿using TwentyOne.Models;
+
+namespace TwentyOne.Services
 {
     public class Hand
     {
@@ -27,12 +29,7 @@
 
         public void GenerateNewCardInDeck()
         {
-            var card = new Card();
-
-            card.CardNumber = Random.Shared.Next(1, Card.MaxCardNumber);
-            card.SuitNumber = Random.Shared.Next(1, Card.MaxSuitNumber);
-
-            Cards.Add(card);
+            Cards.Add(new Card());
         }
     }
 }
