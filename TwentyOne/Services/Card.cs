@@ -32,7 +32,7 @@ namespace TwentyOne.Services
             try
             {
                 // Create a Bitmap object from a file.
-                Bitmap myBitmap = new(@"..\Images\card-set-1.jpg");
+                Bitmap myBitmap = new(@".\Images\card-set-1.jpg");
 
                 int leftMargin = 1;
                 int topMargin = 10;
