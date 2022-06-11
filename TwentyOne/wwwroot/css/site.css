@@ -69,20 +69,12 @@ a, .btn-link {
     height: 167px;
     border: 1px solid #f1f1f1;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
+    /*animation: 1s ease-out 0s 1 slideInFromLeft;*/
 }
 
 /* This container is needed to position the front and back side */
 .flip-card-inner {
     position: relative;
-    /*
-    width: 100%;
-    height: 100%;
-    */
-    /*text-align: center;*/
-/*    
-    height: 167;
-    width: 114;
-*/
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
@@ -95,25 +87,64 @@ a, .btn-link {
 /* Position the front and back side */
 .flip-card-front, .flip-card-back {
     position: absolute;
-    /*    width: 100%;
-    height: 100%; */
-/*    
-    height: 167;
-    width: 114;
-*/   
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
+/* Style the back side (fallback if image is missing) */
+.flip-card-back {
     background-color: #bbb;
     color: black;
 }
 
-/* Style the back side */
-.flip-card-back {
+/* Style the front side */
+.flip-card-front {
     background-color: dodgerblue;
     color: white;
     transform: rotateY(180deg);
 }
+
+@keyframes cardRotate {
+    from {
+        transform: rotateY(0deg);
+        position: absolute;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    to {
+        transition: transform 0.8s;
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/*.rotate {
+    animation: rotation 1s infinite;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotateY(0deg);
+        position: absolute;
+        -webkit-backface-visibility: hidden;*/ /* Safari */
+/*backface-visibility: hidden;
+    }
+
+    to {
+        transition: transform 0.8s;
+        transform: rotateY(180deg);
+        transform-style: preserve-3d;*/
+/*        transform: rotate(359deg*/ /*);
+    }
+}*/
