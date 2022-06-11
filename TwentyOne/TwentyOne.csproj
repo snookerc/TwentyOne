@@ -7,6 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Sounds\CardShuffle1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>    
+	  <Content Include="Sounds\CardFlip1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sounds\CardFlip1.mp3"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
