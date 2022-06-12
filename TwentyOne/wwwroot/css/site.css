@@ -75,7 +75,7 @@ a, .btn-link {
     height: 167px
 */
     width: 180px;
-    height: 275px;
+    height: 271px;
     border: 0px solid #f1f1f1;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
 }

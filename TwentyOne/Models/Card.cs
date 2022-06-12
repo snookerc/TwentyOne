@@ -60,16 +60,16 @@ namespace TwentyOne.Models
             try
             {
                 // Create a Bitmap object from a file.
-                Bitmap bitmap = new(@".\Images\card-set-green-bg.bmp");
+                Bitmap bitmap = new(@".\Images\card-set-green-bg-v2.bmp");
 
-                int leftMargin = 10;
-                int topMargin = 10;
+                int leftMargin = 14;
+                int topMargin = 14;
                 int cardWidth = 180;
-                int cardHeight = 275;
+                int cardHeight = 271;
 
                 // Clone a portion of the Bitmap object.
-                Rectangle cloneRect = new Rectangle(leftMargin + (cardWidth * (1 - 1)),
-                                                    topMargin + (cardHeight * (1 - 1)),
+                Rectangle cloneRect = new Rectangle((leftMargin * cardNumber) + (cardWidth * (cardNumber - 1)),
+                                                    (topMargin * suitNumber) + (cardHeight * (suitNumber - 1)),
                                                     cardWidth,
                                                     cardHeight);
                 Bitmap cloneBitmap = bitmap.Clone(rect: cloneRect, bitmap.PixelFormat);
