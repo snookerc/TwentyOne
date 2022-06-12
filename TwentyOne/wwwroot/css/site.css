@@ -71,9 +71,9 @@ a, .btn-link {
 
 .flip-card {
     background-color: transparent;
-    width: 114px;
+    width: 113px;
     height: 167px;
-    border: 1px solid #f1f1f1;
+    border: 0px solid #f1f1f1;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
 }
 

@@ -72,8 +72,8 @@ namespace TwentyOne.Models
                 //                                    topMargin + (suitNumber - 1) * cardHeight,
                 //                                    cardWidth,
                 //                                    cardHeight);               
-                Rectangle cloneRect = new Rectangle(leftMargin + (cardWidth * 1),
-                                                    topMargin + (cardHeight * 0),
+                Rectangle cloneRect = new Rectangle(leftMargin + (cardWidth * (cardNumber - 1)),
+                                                    topMargin + (cardHeight * (suitNumber - 1)),
                                                     cardWidth,
                                                     cardHeight);
                 Bitmap cloneBitmap = bitmap.Clone(rect: cloneRect, bitmap.PixelFormat);
