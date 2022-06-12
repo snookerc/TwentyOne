@@ -53,6 +53,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        //TODO:  this doesn't work.  is there a "before render"?
         if (firstRender)
         {
             await Deal();
@@ -64,7 +65,7 @@
     {
         cardDeck.NewDeal();
 
-        await jsRuntime.InvokeAsync<string>("PlayAudio", "CardFlip");
+        await jsRuntime.InvokeAsync<string>("PlayAudio", "CardShuffle");
         dealerHand = new Hand(cardDeck, 2);
         playerHand = new Hand(cardDeck, 2);
     }
