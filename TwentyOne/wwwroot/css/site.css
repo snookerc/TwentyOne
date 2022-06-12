@@ -82,6 +82,7 @@ a, .btn-link {
     position: relative;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    background-color: transparent;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */

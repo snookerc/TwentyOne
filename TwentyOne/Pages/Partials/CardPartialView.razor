@@ -13,7 +13,7 @@
             <div class="flip-card-front">
                 <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
             </div>
-            <div id="@String.Format("cardBack_{0}", Card.UniqueID)" class="flip-card-back">
+            <div class="flip-card-back" id="@String.Format("cardBack_{0}", Card.UniqueID)">
                 <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
             </div>
         </div>
