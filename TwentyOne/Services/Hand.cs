@@ -29,7 +29,7 @@ namespace TwentyOne.Services
 
         public void GenerateNewCardInDeck()
         {
-            Cards.Add(new Card());
+            //CardDeck
         }
     }
 }

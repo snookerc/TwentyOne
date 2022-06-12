@@ -31,12 +31,11 @@ namespace TwentyOne.Models
             }
         }
 
-        public Card()
+        public Card(int suitNumber, int cardNumber)
         {
-            //TODO:  pull from card stack to avoid getting dup cards, etc.
-            UniqueID = Random.Shared.Next(1, int.MaxValue);
-            CardNumber = Random.Shared.Next(1, MaxCardNumber);
-            SuitNumber = Random.Shared.Next(1, MaxSuitNumber);
+            UniqueID = Random.Shared.Next(1, int.MaxValue);     //TODO
+            CardNumber = cardNumber;
+            SuitNumber = suitNumber;
             IsVisible = true;
         }
 
@@ -64,7 +63,7 @@ namespace TwentyOne.Models
                 Bitmap bitmap = new(@".\Images\card-set-1.jpg");
 
                 int leftMargin = 0;
-                int topMargin = 10;
+                //int topMargin = 10;
                 int cardWidth = 114;
                 int cardHeight = 167;
 
