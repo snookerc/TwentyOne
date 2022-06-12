@@ -39,21 +39,9 @@ namespace TwentyOne.Models
             IsVisible = true;
         }
 
-        public byte[] GetImageData
-        {
-            get
-            {
-                return GetImage(SuitNumber, CardNumber);
-            }
-        }
+        public byte[] GetImageData => GetImage(SuitNumber, CardNumber);
 
-        public byte[] GetImageDataForBackOfCard
-        {
-            get
-            {
-                return GetImage(SuitNumber, CardBackNumber);
-            }
-        }
+        public byte[] GetImageDataForBackOfCard => GetImage(SuitNumber, CardBackNumber);
 
         private byte[] GetImage(int suitNumber, int cardNumber)
         {

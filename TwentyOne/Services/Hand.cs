@@ -21,17 +21,8 @@ namespace TwentyOne.Services
             }
         }
 
-        public int Score
-        {
-            get
-            {
-                return Cards.Sum(c => c.CardNumber);
-            }
-        }
+        public int Score => Cards.Sum(c => c.CardNumber);
 
-        public void GenerateNewCardInDeck()
-        {
-            Cards.Add(_cardDeck.GetNextCard());
-        }
+        public void GenerateNewCardInDeck() => Cards.Add(_cardDeck.GetNextCard());
     }
 }
