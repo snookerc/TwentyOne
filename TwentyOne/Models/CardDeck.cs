@@ -6,8 +6,14 @@ namespace TwentyOne.Models
     {
         protected Stack<Card> Cards { get; set; } = new Stack<Card>();
 
-        public CardDeck()
+        public int RemainingCardCount => Cards.Count;
+
+        public CardDeck() => NewDeal();
+
+        public void NewDeal()
         {
+            Cards = new Stack<Card>();
+
             for (int suit = 1; suit <= Card.MaxSuitNumber; suit++)
             {
                 for (int card = 1; card <= Card.MaxCardNumber; card++)
@@ -18,8 +24,6 @@ namespace TwentyOne.Models
 
             Cards = Cards.Shuffle();
         }
-
-        public int RemainingCardCount => Cards.Count;
 
         public Card GetNextCard()
         {
