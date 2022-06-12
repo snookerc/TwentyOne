@@ -8,9 +8,9 @@ namespace TwentyOne.Models
 
         public CardDeck()
         {
-            for (int suit = 1; suit < Card.MaxSuitNumber; suit++)
+            for (int suit = 1; suit <= Card.MaxSuitNumber; suit++)
             {
-                for (int card = 0; card < Card.MaxCardNumber; card++)
+                for (int card = 1; card <= Card.MaxCardNumber; card++)
                 {
                     Cards.Push(new Card(suit, card));
                 }

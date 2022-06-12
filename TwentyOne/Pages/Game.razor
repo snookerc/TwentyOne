@@ -19,7 +19,7 @@
 </div>
 
 <div class="cardcontainer">
-    @if (dealerHand.Cards != null)
+    @if (dealerHand != null)
     {
         @foreach (var card in dealerHand.Cards)
         {
@@ -28,7 +28,7 @@
     }
 </div>
 <div class="cardcontainer">
-    @if (dealerHand.Cards != null)
+    @if (dealerHand != null)
     {
         @foreach (var card in playerHand.Cards)
         {
