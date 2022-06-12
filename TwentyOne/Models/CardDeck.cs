@@ -16,8 +16,10 @@ namespace TwentyOne.Models
                 }
             }
 
-            Cards.Shuffle();
+            Cards = Cards.Shuffle();
         }
+
+        public int RemainingCardCount => Cards.Count;
 
         public Card GetNextCard()
         {

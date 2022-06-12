@@ -15,7 +15,7 @@
 <h1>Twenty One</h1>
 
 <div>
-    <button @onclick="Deal">Deal</button>
+    <button @onclick="Deal">Deal (@cardDeck.RemainingCardCount left)</button>
 </div>
 
 <div class="cardcontainer">
@@ -46,6 +46,8 @@
     protected override async Task OnInitializedAsync()
     {
         //await GetImage(SuitNumber, CardNumber);
+        dealerHand = new Hand(cardDeck);
+        playerHand = new Hand(cardDeck);
     }
 
     private async Task Deal()
