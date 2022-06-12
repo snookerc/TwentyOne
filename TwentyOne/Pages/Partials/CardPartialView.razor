@@ -8,14 +8,12 @@
 
 @if (Card.IsVisible)
 {
-    <div class="flip-card-inner">
-        <div class="flip-card-front">
-            <div>
+    <div class="flip-card">
+        <div class="flip-card-inner" id="@String.Format("cardInner_{0}", Card.UniqueID)">
+            <div class="flip-card-front">
                 <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
             </div>
-        </div>
-        <div class="flip-card-back">
-            <div>
+            <div id="@String.Format("cardBack_{0}", Card.UniqueID)" class="flip-card-back">
                 <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
             </div>
         </div>

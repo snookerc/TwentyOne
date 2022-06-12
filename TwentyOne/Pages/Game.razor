@@ -19,13 +19,13 @@
     </button>
 </div>
 
-<div class="flip-card">
+<div class="cardcontainer">
     @foreach (var card in dealerHand.Cards)
     {
         <CardPartialView Card="card" />
     }
 </div>
-<div class="flip-card">
+<div class="cardcontainer">
     @foreach (var card in playerHand.Cards)
     {
         <CardPartialView Card="card" />
@@ -48,6 +48,10 @@
         await jsRuntime.InvokeAsync<string>("PlayAudio", "CardFlip");
         dealerHand = new Hand(2);
         playerHand = new Hand(2);
+        foreach (var card in dealerHand.Cards)
+        {
+            
+        }
     }
 
 }

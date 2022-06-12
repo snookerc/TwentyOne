@@ -63,13 +63,17 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+.cardcontainer {
+    display: flex;
+    justify-content: center;
+}
+
 .flip-card {
     background-color: transparent;
     width: 114px;
     height: 167px;
     border: 1px solid #f1f1f1;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
-    /*animation: 1s ease-out 0s 1 slideInFromLeft;*/
 }
 
 /* This container is needed to position the front and back side */
@@ -95,13 +99,14 @@ a, .btn-link {
 .flip-card-back {
     background-color: #bbb;
     color: black;
+    transform: rotateY(180deg);
+    /*animation: .5s ease-out 0s 1 slideInFromLeft;*/
 }
 
 /* Style the front side */
 .flip-card-front {
     background-color: dodgerblue;
     color: white;
-    transform: rotateY(180deg);
 }
 
 @keyframes cardRotate {
