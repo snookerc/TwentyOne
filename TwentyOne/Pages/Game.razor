@@ -5,6 +5,7 @@
 @using TwentyOne.Models;
 @using TwentyOne.Pages.Partials;
 @inject IJSRuntime jsRuntime
+@inject CardDeck cardDeck
 
 <PageTitle>Twenty One</PageTitle>
 
@@ -14,29 +15,33 @@
 <h1>Twenty One</h1>
 
 <div>
-    <button @onclick="Deal">
-        Deal
-    </button>
+    <button @onclick="Deal">Deal</button>
 </div>
 
 <div class="cardcontainer">
-    @foreach (var card in dealerHand.Cards)
+    @if (dealerHand.Cards != null)
     {
-        <CardPartialView Card="card" />
+        @foreach (var card in dealerHand.Cards)
+        {
+            <CardPartialView Card="card" />
+        }
     }
 </div>
 <div class="cardcontainer">
-    @foreach (var card in playerHand.Cards)
+    @if (dealerHand.Cards != null)
     {
-        <CardPartialView Card="card" />
+        @foreach (var card in playerHand.Cards)
+        {
+            <CardPartialView Card="card" />
+        }
     }
 </div>
 
 @code {
     private byte[] CardImage = null!;
 
-    private Hand dealerHand = new Hand();
-    private Hand playerHand = new Hand();
+    private Hand dealerHand;
+    private Hand playerHand;
 
     protected override async Task OnInitializedAsync()
     {
@@ -46,12 +51,8 @@
     private async Task Deal()
     {
         await jsRuntime.InvokeAsync<string>("PlayAudio", "CardFlip");
-        dealerHand = new Hand(2);
-        playerHand = new Hand(2);
-        foreach (var card in dealerHand.Cards)
-        {
-            
-        }
+        dealerHand = new Hand(cardDeck, 2);
+        playerHand = new Hand(cardDeck, 2);
     }
 
 }

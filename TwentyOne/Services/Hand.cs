@@ -4,14 +4,16 @@ namespace TwentyOne.Services
 {
     public class Hand
     {
+        private CardDeck _cardDeck;
         public List<Card> Cards { get; set; }
 
-        public Hand() : this(0)
+        public Hand(CardDeck cardDeck) : this(cardDeck, 0)
         {
         }
 
-        public Hand(int initalCardCount)
+        public Hand(CardDeck cardDeck, int initalCardCount)
         {
+            _cardDeck = cardDeck;
             Cards = new List<Card>();
             for (int i = 0; i < initalCardCount; i++)
             {
@@ -29,7 +31,7 @@ namespace TwentyOne.Services
 
         public void GenerateNewCardInDeck()
         {
-            //CardDeck
+            Cards.Add(_cardDeck.GetNextCard());
         }
     }
 }
