@@ -65,14 +65,16 @@
     {
         cardDeck.NewDeal();
 
-        await jsRuntime.InvokeAsync<string>("PlayAudio", "CardShuffle");
+        //await jsRuntime.InvokeAsync<string>("PlayAudio", "CardShuffle");
+        await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardShuffle1.mp3");
         dealerHand = new Hand(cardDeck, 2);
         playerHand = new Hand(cardDeck, 2);
     }
 
     private async Task HitMe()
     {
-        await jsRuntime.InvokeAsync<string>("PlayAudio", "CardFlip");
+        //await jsRuntime.InvokeAsync<string>("PlayAudio", "CardFlip");
+        await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         playerHand.GenerateNewCardInDeck();
     }
 
