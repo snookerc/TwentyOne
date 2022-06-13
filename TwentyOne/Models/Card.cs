@@ -11,16 +11,32 @@ namespace TwentyOne.Models
         public int UniqueID { get; set; }
         public bool IsVisible { get; set; }
         public int SuitNumber { get; set; }
-        public enum SuitType { Hearts, Spades, Diamonds, Clubs }
+        public enum SuitType { Spades, Hearts, Diamonds, Clubs }
         public int CardNumber { get; set; }
         public enum CardType { Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King }
 
-        public int PointValue
+        public int PointValueLow
         {
             get
             {
                 switch (CardNumber)
                 {
+                    case (int)CardType.Ace:
+                        return 1;
+                    default:
+                        return PointValueHigh;
+                }
+            }
+        }        
+        
+        public int PointValueHigh
+        {
+            get
+            {
+                switch (CardNumber)
+                {
+                    case (int)CardType.Ace:
+                        return 11;
                     case (int)CardType.Jack:
                     case (int)CardType.Queen:
                     case (int)CardType.King:

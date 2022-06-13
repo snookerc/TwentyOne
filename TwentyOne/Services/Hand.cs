@@ -21,7 +21,7 @@ namespace TwentyOne.Services
             }
         }
 
-        public int Score => Cards.Sum(c => c.CardNumber);
+        public int Score => Cards.Sum(c => c.PointValue);
 
         public void GenerateNewCardInDeck() => Cards.Add(_cardDeck.GetNextCard());
     }
