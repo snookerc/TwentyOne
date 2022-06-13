@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\card-set-1 - Copy.jpg" />
+    <None Remove="Images\card-set-1-back.png" />
+    <None Remove="Images\card-set-1.jpg" />
+    <None Remove="Images\card-set-green-bg.bmp" />
+    <None Remove="Images\card-set-green-bg.png" />
+    <None Remove="Images\English_pattern_playing_cards_deck.svg" />
+    <None Remove="Images\suits.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\sounds\CardFlip1.mp3" />
     <None Include="wwwroot\sounds\CardShuffle1.mp3" />
   </ItemGroup>
