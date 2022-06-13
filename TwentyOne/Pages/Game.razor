@@ -14,12 +14,9 @@
 
 <h1>Twenty One</h1>
 
-<div>
-    <button @onclick="Deal">New Game</button>
-    <button @onclick="HitMe">Hit Me! (@cardDeck.RemainingCardCount left)</button>
-</div>
-
 <div class="cardcontainer">
+
+    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
     @if (dealerHand != null)
     {
         @foreach (var card in dealerHand.Cards)
@@ -31,7 +28,9 @@
 
 <div id="DealerPlayerSeparator">
     <div><hr class="hrseparator" /></div>
-    <div class="dealerseparatorparent"><div class="dealerseparatorchild">Dealer must stand on 17 and draw to 16</div></div>
+    <div class="dealerseparatorparent">
+        <div class="dealerseparatorchild">Dealer must stand on 17 and draw to 16</div>
+    </div>
     <div><hr class="hrseparator" /></div>
 </div>
 
@@ -45,17 +44,27 @@
     }
 </div>
 
+<div>
+    <button @onclick="Deal">New Game</button>
+    <button @onclick="HitMe">Hit Me! (@cardDeck.RemainingCardCount left)</button>
+</div>
+
 @code {
     private byte[] CardImage = null!;
 
     private Hand dealerHand;
     private Hand playerHand;
 
+    private byte[] deckImage;
+
     protected override async Task OnInitializedAsync()
     {
         //await GetImage(SuitNumber, CardNumber);
         dealerHand = new Hand(cardDeck);
         playerHand = new Hand(cardDeck);
+
+        Card backCard = new Card(1, Card.CardBackNumber);
+        deckImage = backCard.GetImageData;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
