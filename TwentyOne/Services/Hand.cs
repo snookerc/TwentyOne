@@ -7,11 +7,13 @@ namespace TwentyOne.Services
         private const int WinningScore = 21;
         private CardDeck _cardDeck;
 
+        private int ScoreLow => Cards.Sum(c => c.PointValueLow);
+
+        private int ScoreHigh => Cards.Sum(c => c.PointValueHigh);
+
         public List<Card> Cards { get; set; }
 
-        public Hand(CardDeck cardDeck) : this(cardDeck, 0)
-        {
-        }
+        public Hand(CardDeck cardDeck) : this(cardDeck, 0) { }
 
         public Hand(CardDeck cardDeck, int initalCardCount)
         {
@@ -23,12 +25,18 @@ namespace TwentyOne.Services
             }
         }
 
-        public bool IsBust => ScoreLow > WinningScore && ScoreLow > WinningScore;
+        public int Score => ScoreHigh > WinningScore ? ScoreLow : ScoreHigh;
 
-        public int ScoreLow => Cards.Sum(c => c.PointValueLow);
-
-        public int ScoreHigh => Cards.Sum(c => c.PointValueHigh);
+        public bool IsBust => Score > WinningScore;
 
         public void GenerateNewCardInDeck() => Cards.Add(_cardDeck.GetNextCard());
+        
+        public void DealerPickCard()
+        {
+            if (Score < 17)
+            {
+                GenerateNewCardInDeck();
+            }   
+        }
     }
 }
