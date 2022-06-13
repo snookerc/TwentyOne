@@ -15,8 +15,10 @@
 <h1>Twenty One</h1>
 
 <div class="cardcontainer">
-
-    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
+    <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
+    <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
+    <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
+    <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
     @if (dealerHand != null)
     {
         @foreach (var card in dealerHand.Cards)

@@ -10,9 +10,9 @@ h1 {
     color: gold;
 }
 
-h1:focus {
-    outline: none;
-}
+    h1:focus {
+        outline: none;
+    }
 
 a, .btn-link {
     color: #0071c1;
@@ -80,7 +80,7 @@ a, .btn-link {
     background-color: transparent;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
-    font-weight:600;
+    font-weight: 600;
     color: gold;
 }
 
@@ -92,6 +92,16 @@ a, .btn-link {
     display: flex;
     justify-content: center;
 }
+
+.blackjack-drawdeck {
+    width: 182px;
+    height: 272px;
+    float: left;
+}
+
+    .blackjack-drawdeck:not(:first-child) {
+        margin-left: -172px;
+    }
 
 .flip-card {
     background-color: transparent;
