@@ -84,6 +84,11 @@ a, .btn-link {
     color: gold;
 }
 
+.hrseparator {
+    /*color: gold;*/
+    border-top: 5px double yellow;
+}
+
 .cardcontainer {
     display: flex;
     justify-content: center;
