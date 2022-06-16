@@ -81,17 +81,17 @@
         Card backCard = new Card(1, Card.CardBackNumber);
         deckImage = backCard.GetImageData;
 
-        HideButtons = true;
+        HideButtons = false;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        await base.OnAfterRenderAsync(firstRender);
         //TODO:  this doesn't work.  is there a "before render"?
         if (firstRender)
         {
             await Deal();
         }
-        await base.OnAfterRenderAsync(firstRender);
     }
 
     private async Task Deal()
@@ -106,10 +106,8 @@
 
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardShuffle1.mp3");
 
-        System.Threading.Thread.Sleep(300);
         dealerHand = new Hand(cardDeck, 2);
 
-        //System.Threading.Thread.Sleep(500);
         //await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         playerHand = new Hand(cardDeck, 2);
 

@@ -128,6 +128,7 @@ a, .btn-link {
     border: 0px solid #f1f1f1;
     border-radius: 50px;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
+    animation: .5s ease-in-out 0s 1 throwCard;
 }
 
 /* This container is needed to position the front and back side */
@@ -179,7 +180,42 @@ a, .btn-link {
     }
 }
 
-@keyframes slideInFromLeft {
+@keyframes throwCard {
+    0% {
+        left: -100px;
+        top: -200px;
+        transform: rotate(360deg);
+        transform: rotateY(360deg);
+        -webkit-transform: rotate(360deg);
+        -webkit-transform: rotateY(360deg);
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    50% {
+        left: -50px;
+        top: -100px;
+        transform: rotate(180deg);
+        /*transform: rotateY(180deg);*/
+        -webkit-transform: rotate(180deg);
+        -webkit-transform: rotateY(180deg);
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+        transform: rotate(0deg);
+        transform: rotateY(0deg);
+        -webkit-transform: rotate(0deg);
+        -webkit-transform: rotateY(0deg);
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+}
+
+/*@keyframes slideInFromLeft {
     0% {
         transform: translateX(-100%);
     }
@@ -188,7 +224,7 @@ a, .btn-link {
         transform: translateX(0);
     }
 }
-
+*/
 /*.rotate {
     animation: rotation 1s infinite;
 }
