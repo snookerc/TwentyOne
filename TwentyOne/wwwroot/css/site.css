@@ -69,6 +69,12 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+
+.heading {
+    color: gold;
+    font-size:xx-large;
+}
+
 .dealerseparatorparent {
     height: 100%;
     display: flex;
@@ -90,7 +96,19 @@ a, .btn-link {
 
 .cardcontainer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
+}
+
+.one {
+    width: 15%;
+    height: 275px;
+    float: left;
+}
+
+.two {
+    margin-left: 15%;
+    height: 200px;
+    width: 1000px;
 }
 
 .blackjack-drawdeck {
