@@ -33,12 +33,5 @@ namespace TwentyOne.Services
 
         public void GenerateNewCardInDeck() => Cards.Add(_cardDeck.GetNextCard());
 
-        public void DealerPickCard()
-        {
-            if (Score < 17)
-            {
-                GenerateNewCardInDeck();
-            }
-        }
     }
 }
