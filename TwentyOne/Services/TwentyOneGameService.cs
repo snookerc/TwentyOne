@@ -2,21 +2,26 @@
 {
     public class TwentyOneGameService
     {
-        public async Task<Hand> ComputerTurn(Hand gameHand)
+        public Hand ComputerTurn(Hand gameHand)
         {
             Hand newGameHand = gameHand;
 
-            //
-            newGameHand.GenerateNewCardInDeck();
+            if (newGameHand.Score < 17)
+            {
+                newGameHand.GenerateNewCardInDeck();
+            }
+            else
+            {
+                newGameHand.IsDone = true;
+            }
 
             return newGameHand;
         }
 
-        public async Task<Hand> PlayerTurn(Hand gameHand)
+        public Hand PlayerTurn(Hand gameHand)
         {
             Hand newGameHand = gameHand;
 
-            //
             newGameHand.GenerateNewCardInDeck();
 
             return newGameHand;

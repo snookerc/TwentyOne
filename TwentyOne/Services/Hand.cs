@@ -29,14 +29,16 @@ namespace TwentyOne.Services
 
         public bool IsBust => Score > WinningScore;
 
+        public bool IsDone { get; set; }
+
         public void GenerateNewCardInDeck() => Cards.Add(_cardDeck.GetNextCard());
-        
+
         public void DealerPickCard()
         {
             if (Score < 17)
             {
                 GenerateNewCardInDeck();
-            }   
+            }
         }
     }
 }
