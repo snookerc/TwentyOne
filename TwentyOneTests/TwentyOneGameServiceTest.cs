@@ -9,35 +9,37 @@ namespace TwentyOneTests
         [Fact]
         public void GivenADealerHandWithTwoCards_When16Points_ThenDealerHits()
         {
-            var personFaker = new HandFaker(id);
-            var hand = AutoFaker.Generate<Hand>(f => f.);
+            var dealerHand = new Hand(_cardDeck, 0);
+            Card card1 = _cardDeck.GetNextCard();
+            card1.CardNumber = 8;
 
-            // Create a Person instance using AutoFaker.Generate()
-            // If the AutoFaker<T> class needs constructor arguments, they can be passed using WithArgs()
-            var person2 = AutoFaker.Generate<Person, PersonFaker>(builder => builder.WithArgs(id));
+            Card card2 = _cardDeck.GetNextCard();
+            card2.CardNumber = 8;
 
-            //Hand fakeDealerHand = AutoFaker<Hand>();
+            dealerHand.Cards.Add(card1);
+            dealerHand.Cards.Add(card2);    
 
-
-            fakeDealerHand = _gameService.ComputerTurn(fakeDealerHand);
-            fakeDealerHand.Score.Should().BeGreaterThan(16);
+            dealerHand = _gameService.ComputerTurn(dealerHand);
+            dealerHand.Score.Should().BeGreaterThan(16);
         }
 
         [Fact]
         public void GivenADealerHandWithTwoCards_When17Points_ThenDealerStands()
         {
-            Hand fakeDealerHand = AutoFaker.Generate<Hand>();
+            var dealerHand = new Hand(_cardDeck, 0);
+            Card card1 = _cardDeck.GetNextCard();
+            card1.CardNumber = 8;
 
-            fakeDealerHand = _gameService.ComputerTurn(fakeDealerHand);
-            fakeDealerHand.Score.Should().Be(17);
-        }
-    }
+            Card card2 = _cardDeck.GetNextCard();
+            card2.CardNumber = 9;
 
-    public class HandFaker : AutoFaker<Hand>
-    {
-        public HandFaker(int id)
-        {
-            //RuleFor(fake => fake., () => id)
+            dealerHand.Cards.Add(card1);
+            dealerHand.Cards.Add(card2);
+
+            Console.WriteLine(dealerHand.Score);
+
+            dealerHand = _gameService.ComputerTurn(dealerHand);
+            dealerHand.Score.Should().Be(17);
         }
     }
 
