@@ -36,8 +36,6 @@ namespace TwentyOneTests
             dealerHand.Cards.Add(card1);
             dealerHand.Cards.Add(card2);
 
-            Console.WriteLine(dealerHand.Score);
-
             dealerHand = _gameService.ComputerTurn(dealerHand);
             dealerHand.Score.Should().Be(17);
         }
