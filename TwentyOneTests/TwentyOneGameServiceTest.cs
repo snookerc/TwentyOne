@@ -9,10 +9,15 @@ namespace TwentyOneTests
         [Fact]
         public void GivenADealerHandWithTwoCards_When16Points_ThenDealerHits()
         {
-            var cardFaker = new AutoFaker<Card>()
-                .RuleFor(p => p.CardNumber, 8);
+            var personFaker = new HandFaker(id);
+            var hand = AutoFaker.Generate<Hand>(f => f.);
 
-            Hand fakeDealerHand = AutoFaker.Generate<Hand>();
+            // Create a Person instance using AutoFaker.Generate()
+            // If the AutoFaker<T> class needs constructor arguments, they can be passed using WithArgs()
+            var person2 = AutoFaker.Generate<Person, PersonFaker>(builder => builder.WithArgs(id));
+
+            //Hand fakeDealerHand = AutoFaker<Hand>();
+
 
             fakeDealerHand = _gameService.ComputerTurn(fakeDealerHand);
             fakeDealerHand.Score.Should().BeGreaterThan(16);
@@ -27,4 +32,13 @@ namespace TwentyOneTests
             fakeDealerHand.Score.Should().Be(17);
         }
     }
+
+    public class HandFaker : AutoFaker<Hand>
+    {
+        public HandFaker(int id)
+        {
+            //RuleFor(fake => fake., () => id)
+        }
+    }
+
 }
