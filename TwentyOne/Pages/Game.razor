@@ -74,7 +74,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //await GetImage(SuitNumber, CardNumber);
+        Card cardFromDeck = cardDeck.GetNextCard();
+        while (cardFromDeck != null)
+        {
+            cardFromDeck.SaveImage(cardFromDeck.SuitNumber, cardFromDeck.CardNumber);
+            cardFromDeck = cardDeck.GetNextCard();
+        }
+
         dealerHand = new Hand(cardDeck);
         playerHand = new Hand(cardDeck);
 

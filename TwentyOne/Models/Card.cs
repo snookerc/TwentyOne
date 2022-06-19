@@ -27,8 +27,8 @@ namespace TwentyOne.Models
                         return PointValueHigh;
                 }
             }
-        }        
-        
+        }
+
         public int PointValueHigh
         {
             get
@@ -81,6 +81,35 @@ namespace TwentyOne.Models
 
                 ImageConverter converter = new ImageConverter();
                 return (byte[])converter.ConvertTo(cloneBitmap, destinationType: typeof(byte[]));
+            }
+            catch (Exception ex)
+            {
+                //TODO:  error logging
+                throw;
+            }
+        }
+
+        public void SaveImage(int suitNumber, int cardNumber)
+        {
+            try
+            {
+                // Create a Bitmap object from a file.
+                Stream imgStream = new FileStream(@".\Images\card-set-green-bg-v2.bmp", FileMode.Open, FileAccess.Read);
+                Bitmap bitmap = new(imgStream);
+
+                int leftMargin = 14;
+                int topMargin = 14;
+                int cardWidth = 182;
+                int cardHeight = 272;
+
+                // Clone a portion of the Bitmap object.
+                Rectangle cloneRect = new Rectangle((leftMargin * cardNumber) + (cardWidth * (cardNumber - 1)),
+                                                    (topMargin * suitNumber) + (cardHeight * (suitNumber - 1)),
+                                                    cardWidth,
+                                                    cardHeight);
+                Bitmap cloneBitmap = bitmap.Clone(rect: cloneRect, bitmap.PixelFormat);
+
+                cloneBitmap.Save($"C:\\Users\\snook\\source\\repos\\TwentyOne\\TwentyOne\\wwwroot\\images\\decks\\original\\{suitNumber}-{cardNumber}.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             catch (Exception ex)
             {
