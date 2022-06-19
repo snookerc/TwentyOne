@@ -5,18 +5,18 @@
 @code
 {
     [Parameter]
-    public Card Card { get; set; }
+    public Card card { get; set; }
 }
 
-@if (Card.IsVisible)
+@if (card.IsVisible)
 {
     <div class="flip-card">
-        <div class="flip-card-inner" id="@String.Format("cardInner_{0}", Card.UniqueID)">
+        <div class="flip-card-inner" id="@String.Format("cardInner_{0}", card.UniqueID)">
             <div class="flip-card-front">
-                <img src="@($"images/decks/default/{Card.GetImageName}")" />
+                <img src="@($"images/decks/default/{card.GetImageName}")" />
             </div>
-            <div class="flip-card-back" id="@String.Format("cardBack_{0}", Card.UniqueID)">
-                <img src="@($"images/decks/default/{Card.GetImageNameForBack}")" />
+            <div class="flip-card-back" id="@String.Format("cardBack_{0}", card.UniqueID)">
+                <img src="@($"images/decks/default/{card.GetImageNameForBack}")" />
             </div>
         </div>
     </div>
@@ -24,6 +24,6 @@
 else
 {
     <div class="flip-card-back">
-        <img src="@($"images/decks/default/{Card.GetImageNameForBack}")" />
+        <img src="@($"images/decks/default/{card.GetImageNameForBack}")" />
     </div>
 }

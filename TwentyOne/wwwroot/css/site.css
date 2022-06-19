@@ -36,6 +36,11 @@ a, .btn-link {
     outline: 1px solid red;
 }
 
+img {
+    width: 75%;
+    height: auto;
+}
+
 .validation-message {
     color: red;
 }
@@ -85,8 +90,10 @@ a, .btn-link {
 .dealerseparatorchild {
     background-color: transparent;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: xx-large;
-    font-weight: 600;
+    font-size: x-large;
+    font-weight: 300;
+    font-style: oblique;
+    text-shadow: 1px 1px;
     color: gold;
 }
 
@@ -96,7 +103,7 @@ a, .btn-link {
 
 .cardcontainer {
     display: flex;
-    justify-content: left;
+    justify-content: center;
 }
 
 .one {
@@ -115,6 +122,8 @@ a, .btn-link {
     width: 182px;
     height: 272px;
     float: left;
+    width: 75%;
+    height: auto;
 }
 
     .blackjack-drawdeck:not(:first-child) {
@@ -123,8 +132,11 @@ a, .btn-link {
 
 .flip-card {
     background-color: transparent;
-    width: 182px;
+/*    width: 182px;
     height: 272px;
+*/    
+    width: 91px;
+    height: 136px;
     border: 0px solid #f1f1f1;
     border-radius: 50px;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
@@ -214,33 +226,3 @@ a, .btn-link {
         backface-visibility: hidden;
     }
 }
-
-/*@keyframes slideInFromLeft {
-    0% {
-        transform: translateX(-100%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-*/
-/*.rotate {
-    animation: rotation 1s infinite;
-}
-
-@keyframes rotation {
-    from {
-        transform: rotateY(0deg);
-        position: absolute;
-        -webkit-backface-visibility: hidden;*/ /* Safari */
-/*backface-visibility: hidden;
-    }
-
-    to {
-        transition: transform 0.8s;
-        transform: rotateY(180deg);
-        transform-style: preserve-3d;*/
-/*        transform: rotate(359deg*/ /*);
-    }
-}*/

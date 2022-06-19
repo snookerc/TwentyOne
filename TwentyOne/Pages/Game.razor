@@ -14,6 +14,7 @@
 
 <h1>Twenty One</h1>
 <div>
+    <br />
 </div>
 <div class="cardcontainer">
     <div class="one">
@@ -27,7 +28,7 @@
     {
         @foreach (var card in dealerHand.Cards)
         {
-            <CardPartialView Card="card" />
+            <CardPartialView card="card" />
         }
     }
     else
@@ -49,9 +50,13 @@
     {
         @foreach (var card in playerHand.Cards)
         {
-            <CardPartialView Card="card" />
+            <CardPartialView card="card" />
         }
     }
+</div>
+
+<div>
+    <br />
 </div>
 
 <div style="align-content:center;justify-content:center;display:flex;">
@@ -60,11 +65,14 @@
     <MudButton id="newGameButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideButtons Disabled=@IsLoading @onclick="Deal">New Game</MudButton>
     &nbsp;
     <MudButton id="hitMeButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideButtons Disabled=@IsLoading @onclick="HitMe">Hit Me!</MudButton>
+    &nbsp;
+    <MudButton id="standButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideButtons Disabled=@IsLoading @onclick="Stand">Stand</MudButton>
 </div>
 
 @code {
     private bool IsLoading = false;
     private bool HideButtons = false;
+    private TwentyOneGameService twentyOneGameService = new TwentyOneGameService();
     private Card cardInStack;
 
     private Hand dealerHand;
@@ -76,7 +84,7 @@
         playerHand = new Hand(cardDeck);
 
         cardInStack = new Card(1, Card.CardBackNumber);
-  
+
         HideButtons = false;
     }
 
@@ -115,7 +123,15 @@
     {
         IsLoading = true;
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
-        playerHand.GenerateNewCardInDeck();
+        twentyOneGameService.PlayerTurn(playerHand);
+        IsLoading = false;
+    }
+
+    private async Task Stand()
+    {
+        IsLoading = true;
+        await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
+        twentyOneGameService.ComputerTurn(dealerHand);
         IsLoading = false;
     }
 
