@@ -1,5 +1,7 @@
 ﻿@using TwentyOne.Models;
 
+@namespace TwentyOne.Pages.Partials
+
 @code
 {
     [Parameter]
@@ -11,10 +13,10 @@
     <div class="flip-card">
         <div class="flip-card-inner" id="@String.Format("cardInner_{0}", Card.UniqueID)">
             <div class="flip-card-front">
-                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageData))" />
+                <img src="@($"images/decks/default/{Card.GetImageName}")" />
             </div>
             <div class="flip-card-back" id="@String.Format("cardBack_{0}", Card.UniqueID)">
-                <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+                <img src="@($"images/decks/default/{Card.GetImageNameForBack}")" />
             </div>
         </div>
     </div>
@@ -22,6 +24,6 @@
 else
 {
     <div class="flip-card-back">
-        <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Card.GetImageDataForBackOfCard))" />
+        <img src="@($"images/decks/default/{Card.GetImageNameForBack}")" />
     </div>
 }

@@ -17,10 +17,10 @@
 </div>
 <div class="cardcontainer">
     <div class="one">
-        <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
-        <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
-        <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
-        <img class="blackjack-drawdeck" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(deckImage))" />
+        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
+        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
+        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
+        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
     </div>
 
     @if (dealerHand != null)
@@ -65,28 +65,18 @@
 @code {
     private bool IsLoading = false;
     private bool HideButtons = false;
-    private byte[] CardImage = null!;
+    private Card cardInStack;
 
     private Hand dealerHand;
     private Hand playerHand;
 
-    private byte[] deckImage;
-
     protected override async Task OnInitializedAsync()
     {
-        Card cardFromDeck = cardDeck.GetNextCard();
-        while (cardFromDeck != null)
-        {
-            cardFromDeck.SaveImage(cardFromDeck.SuitNumber, cardFromDeck.CardNumber);
-            cardFromDeck = cardDeck.GetNextCard();
-        }
-
         dealerHand = new Hand(cardDeck);
         playerHand = new Hand(cardDeck);
 
-        Card backCard = new Card(1, Card.CardBackNumber);
-        deckImage = backCard.GetImageData;
-
+        cardInStack = new Card(1, Card.CardBackNumber);
+  
         HideButtons = false;
     }
 
