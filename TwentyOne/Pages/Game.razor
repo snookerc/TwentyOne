@@ -14,16 +14,15 @@
 
 <h1>Twenty One</h1>
 <div>
+    <div style="position:center;">
+        <img class="card-image" src="@($"images/decks/default/deck.jpg")" />
+    </div>
     <br />
 </div>
+<div class="player-heading">Dealer</div>
+<div class="player-score">@(dealerHand?.Score.ToString())<br /></div>
+<br />
 <div class="cardcontainer">
-@*    <div class="one">
-        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
-        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
-        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
-        <img class="blackjack-drawdeck" src="@($"images/decks/default/{cardInStack.GetImageNameForBack}")" />
-    </div>*@
-
     @if (dealerHand != null)
     {
         @foreach (var card in dealerHand.Cards)
@@ -45,12 +44,19 @@
     <div><hr class="hrseparator" /></div>
 </div>
 
+<div class="player-heading">Player</div>
+<div class="@(playerHand.IsBust ? "player-score-error" : "player-score")">@(playerHand?.Score.ToString())<br /></div>
+<br />
 <div class="cardcontainer">
-    @if (dealerHand != null)
+    @if (playerHand != null)
     {
         @foreach (var card in playerHand.Cards)
         {
             <CardPartialView card="card" />
+        }
+        @if (playerHand.IsBust)
+        {
+            <div class="busted">>BUSTED!</div>
         }
     }
 </div>
@@ -62,16 +68,17 @@
 <div style="align-content:center;justify-content:center;display:flex;">
     <br />
     <br />
-    <MudButton id="newGameButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideButtons Disabled=@IsLoading @onclick="Deal">New Game</MudButton>
+    <MudButton id="newGameButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideNewGameButton Disabled=@IsLoading @onclick="NewGame">New Game</MudButton>
     &nbsp;
-    <MudButton id="hitMeButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideButtons Disabled=@IsLoading @onclick="HitMe">Hit Me!</MudButton>
+    <MudButton id="hitMeButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HidePlayerButtons Disabled=@IsLoading @onclick="HitMe">Hit Me!</MudButton>
     &nbsp;
-    <MudButton id="standButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HideButtons Disabled=@IsLoading @onclick="Stand">Stand</MudButton>
+    <MudButton id="standButton" Variant="Variant.Filled" Style="background-color:gold" hidden=@HidePlayerButtons Disabled=@IsLoading @onclick="Stand">Stand</MudButton>
 </div>
 
 @code {
     private bool IsLoading = false;
-    private bool HideButtons = false;
+    private bool HideNewGameButton = false;
+    private bool HidePlayerButtons = false;
     private TwentyOneGameService twentyOneGameService = new TwentyOneGameService();
     private Card cardInStack;
 
@@ -85,7 +92,7 @@
 
         cardInStack = new Card(1, Card.CardBackNumber);
 
-        HideButtons = false;
+        HidePlayerButtons = false;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -94,14 +101,15 @@
         //TODO:  this doesn't work.  is there a "before render"?
         if (firstRender)
         {
-            await Deal();
+            await NewGame();
         }
     }
 
-    private async Task Deal()
+    private async Task NewGame()
     {
         IsLoading = true;
-        HideButtons = true;
+        HidePlayerButtons = true;
+        HideNewGameButton = true;
 
         cardDeck.NewDeal();
 
@@ -116,7 +124,8 @@
         playerHand = new Hand(cardDeck, 2);
 
         IsLoading = false;
-        HideButtons = false;
+        HidePlayerButtons = false;
+        HideNewGameButton = false;
     }
 
     private async Task HitMe()
@@ -124,15 +133,20 @@
         IsLoading = true;
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         twentyOneGameService.PlayerTurn(playerHand);
+        if (playerHand.IsBust)
+        {
+            HidePlayerButtons = true;
+        };
         IsLoading = false;
     }
 
     private async Task Stand()
     {
-        IsLoading = true;
+        HidePlayerButtons = true;
+        HideNewGameButton = true;
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         twentyOneGameService.ComputerTurn(dealerHand);
-        IsLoading = false;
+        HideNewGameButton = false;
     }
 
 }
