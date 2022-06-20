@@ -13,10 +13,10 @@
     <div class="flip-card">
         <div class="flip-card-inner" id="@String.Format("cardInner_{0}", card.UniqueID)">
             <div class="flip-card-front">
-                <img src="@($"images/decks/default/{card.GetImageName}")" />
+                <img class="card-image" src="@($"images/decks/default/{card.GetImageName}")" />
             </div>
             <div class="flip-card-back" id="@String.Format("cardBack_{0}", card.UniqueID)">
-                <img src="@($"images/decks/default/{card.GetImageNameForBack}")" />
+                <img class="card-image" src="@($"images/decks/default/{card.GetImageNameForBack}")" />
             </div>
         </div>
     </div>
@@ -24,6 +24,6 @@
 else
 {
     <div class="flip-card-back">
-        <img src="@($"images/decks/default/{card.GetImageNameForBack}")" />
+        <img class="card-image" src="@($"images/decks/default/{card.GetImageNameForBack}")" />
     </div>
 }

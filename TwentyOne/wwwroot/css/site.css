@@ -36,10 +36,10 @@ a, .btn-link {
     outline: 1px solid red;
 }
 
-img {
+/*img {
     width: 75%;
     height: auto;
-}
+}*/
 
 .validation-message {
     color: red;
@@ -104,6 +104,7 @@ img {
 .cardcontainer {
     display: flex;
     justify-content: center;
+    height: 175px;
 }
 
 .one {
@@ -119,26 +120,26 @@ img {
 }
 
 .blackjack-drawdeck {
-    width: 182px;
-    height: 272px;
+/*    width: 182px;
+    height: 272px;    */
     float: left;
-    width: 75%;
     height: auto;
 }
-
     .blackjack-drawdeck:not(:first-child) {
         margin-left: -172px;
     }
 
+.card-image {
+/*    width: 75%;
+    height: auto; */
+    width: 110px;
+    height: auto;
+}
+
 .flip-card {
     background-color: transparent;
-/*    width: 182px;
-    height: 272px;
-*/    
-    width: 91px;
-    height: 136px;
-    border: 0px solid #f1f1f1;
-    border-radius: 50px;
+    border: 8px solid transparent;
+    align-content: flex-start;
     perspective: 10000px; /* Remove this if you don't want the 3D effect */
     animation: .5s ease-in-out 0s 1 throwCard;
 }
@@ -149,6 +150,8 @@ img {
     transition: transform 0.8s;
     transform-style: preserve-3d;
     background-color: transparent;
+    width: 100px;
+    height: 100%;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
