@@ -60,6 +60,7 @@ a, .btn-link {
     border-left: none;
     border-color: navajowhite;
     float: none;
+    z-index: 0;
 }
 
 .btn-primary {
@@ -125,7 +126,7 @@ a, .btn-link {
     justify-content: center;
 }
 
-.dealerseparatorchild {
+.dealerseparatortext {
     background-color: transparent;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: large;
@@ -141,7 +142,7 @@ a, .btn-link {
 
 .cardcontainer {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     height: 175px;
 }
 
@@ -155,6 +156,23 @@ a, .btn-link {
     margin-left: 15%;
     height: 200px;
     width: 1000px;
+}
+
+.overlay2 {
+    position: fixed;
+    margin-top: 3%;
+    /*bottom: 0;*/
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, .6); /* Black see-through */
+    color: #f1f1f2;
+    width: 50%;
+    transition: 2s ease-in;
+    opacity: 1;
+    color: red;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 20px;
+    text-align: center;
 }
 
 .blackjack-drawdeck {

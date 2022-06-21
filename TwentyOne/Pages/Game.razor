@@ -39,7 +39,7 @@
 <div id="DealerPlayerSeparator">
     <div><hr class="hrseparator" /></div>
     <div class="dealerseparatorparent">
-        <div class="dealerseparatorchild">Dealer must stand on 17 and draw to 16</div>
+        <div class="dealerseparatortext">Dealer must stand on 17 and draw to 16</div>
     </div>
     <div><hr class="hrseparator" /></div>
 </div>
@@ -56,7 +56,7 @@
         }
         @if (playerHand.IsBust)
         {
-            <div class="busted">>BUSTED!</div>
+            <div class="overlay2">BUST!</div>
         }
     }
 </div>
@@ -80,7 +80,6 @@
     private bool HideNewGameButton = false;
     private bool HidePlayerButtons = false;
     private TwentyOneGameService twentyOneGameService = new TwentyOneGameService();
-    private Card cardInStack;
 
     private Hand dealerHand;
     private Hand playerHand;
@@ -89,8 +88,6 @@
     {
         dealerHand = new Hand(cardDeck);
         playerHand = new Hand(cardDeck);
-
-        cardInStack = new Card(1, Card.CardBackNumber);
 
         HidePlayerButtons = false;
     }
