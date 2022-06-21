@@ -6,6 +6,7 @@
 @using TwentyOne.Pages.Partials;
 @inject IJSRuntime jsRuntime
 @inject CardDeck cardDeck
+@inject IDialogService DialogService
 
 <PageTitle>Twenty One</PageTitle>
 
@@ -79,6 +80,7 @@
     private bool IsLoading = false;
     private bool HideNewGameButton = false;
     private bool HidePlayerButtons = false;
+
     private TwentyOneGameService twentyOneGameService = new TwentyOneGameService();
 
     private Hand dealerHand;
@@ -96,10 +98,10 @@
     {
         await base.OnAfterRenderAsync(firstRender);
         //TODO:  this doesn't work.  is there a "before render"?
-        if (firstRender)
-        {
-            await NewGame();
-        }
+        //if (firstRender)
+        //{
+        //    await NewGame();
+        //}
     }
 
     private async Task NewGame()
@@ -141,9 +143,34 @@
     {
         HidePlayerButtons = true;
         HideNewGameButton = true;
+
+        string endOfGameMessage;
+
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         twentyOneGameService.ComputerTurn(dealerHand);
+
+        if (dealerHand.Score > playerHand.Score || playerHand.IsBust)
+        {
+            endOfGameMessage = "Dealer wins";
+        }
+        else if (dealerHand.Score < playerHand.Score || dealerHand.IsBust)
+        {
+            endOfGameMessage = "You win!";
+        }
+        else
+        {
+            endOfGameMessage = "It's a draw!";
+        }
+
+        OpenDialog(endOfGameMessage);
+
         HideNewGameButton = false;
+    }
+
+    private void OpenDialog(string message)
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+        DialogService.Show<Dialog>(message, options);
     }
 
 }

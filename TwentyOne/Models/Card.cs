@@ -11,7 +11,7 @@ namespace TwentyOne.Models
         public int UniqueID { get; set; }
         public bool IsVisible { get; set; }
         public int SuitNumber { get; set; }
-        public enum SuitType { Spades, Hearts, Diamonds, Clubs }
+        public enum SuitType { Unused, Spades, Hearts, Diamonds, Clubs }
         public int CardNumber { get; set; }
         public enum CardType { Unused, Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King }
 

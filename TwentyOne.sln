@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwentyOne", "TwentyOne\TwentyOne.csproj", "{05D098C3-DF8B-457B-AB22-88ECBC71DC33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwentyOneTests", "TwentyOneTests\TwentyOneTests.csproj", "{7C199ED6-90DE-495E-A448-F271083D7CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwentyOneTests", "TwentyOneTests\TwentyOneTests.csproj", "{7C199ED6-90DE-495E-A448-F271083D7CE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

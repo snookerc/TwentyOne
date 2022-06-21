@@ -6,14 +6,11 @@
         {
             Hand newGameHand = gameHand;
 
-            if (newGameHand.Score < 17)
+            while (newGameHand.Score < 17)
             {
                 newGameHand.GenerateNewCardInDeck();
             }
-            else
-            {
-                newGameHand.IsDone = true;
-            }
+            newGameHand.IsDone = true;
 
             return newGameHand;
         }
