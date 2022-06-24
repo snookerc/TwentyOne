@@ -236,6 +236,10 @@ a, .btn-link {
     color: white;
 }
 
+.flip-container:hover .flipper, .flip-container.hover .flipper, .flip-container.flip .flipper {
+    transform: rotateY(180deg);
+}
+
 @keyframes cardRotate {
     from {
         transform: rotateY(0deg);
