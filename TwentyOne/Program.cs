@@ -12,6 +12,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<CardDeck>();
 builder.Services.AddMudServices();
+//builder.Services.AddMudBlazorDialog();
+//builder.Services.AddMudBlazorKeyInterceptor();
 
 var app = builder.Build();
 

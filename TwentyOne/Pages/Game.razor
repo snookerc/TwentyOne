@@ -162,15 +162,15 @@
             endOfGameMessage = "It's a draw!";
         }
 
-        OpenDialog(endOfGameMessage);
-
         HideNewGameButton = false;
+
+        OpenDialog(endOfGameMessage);
     }
 
     private void OpenDialog(string message)
     {
-        var options = new DialogOptions { CloseOnEscapeKey = true };
-        DialogService.Show<Dialog>(message, options);
+        var options = new DialogOptions { CloseOnEscapeKey = true, DisableBackdropClick = true };
+        var dialog = DialogService.Show<Dialog>(message, options);
     }
 
 }
