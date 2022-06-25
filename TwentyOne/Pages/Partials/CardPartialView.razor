@@ -8,22 +8,14 @@
     public Card card { get; set; }
 }
 
-@if (card.IsVisible)
-{
-    <div class="flip-card">
-        <div class="flip-card-inner" id="@String.Format("cardInner_{0}", card.UniqueID)">
-            <div class="flip-card-front">
-                <img class="card-image" src="@($"images/decks/default/{card.GetImageName}")" />
-            </div>
-            <div class="flip-card-back" id="@String.Format("cardBack_{0}", card.UniqueID)">
-                <img class="card-image" src="@($"images/decks/default/{card.GetImageNameForBack}")" />
-            </div>
+<div class="flip-card @(card.IsVisible ? "flip" : "")">
+    <div class="flip-card-inner" id="@String.Format("cardInner_{0}", card.UniqueID)">
+        <div class="flip-card-front">
+            <img class="card-image" src="@($"images/decks/default/{card.GetImageName}")" />
+        </div>
+        <div class="flip-card-back" id="@String.Format("cardBack_{0}", card.UniqueID)">
+            <img class="card-image" src="@($"images/decks/default/{card.GetImageNameForBack}")" />
         </div>
     </div>
-}
-else
-{
-    <div class="flip-card-back">
-        <img class="card-image" src="@($"images/decks/default/{card.GetImageNameForBack}")" />
-    </div>
-}
+</div>
+

@@ -118,6 +118,7 @@
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardShuffle1.mp3");
 
         dealerHand = new Hand(cardDeck, 2);
+        dealerHand.Cards[1].IsVisible = false;
 
         //await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         playerHand = new Hand(cardDeck, 2);
@@ -145,6 +146,7 @@
         HideNewGameButton = true;
 
         string endOfGameMessage;
+        string endOfGameSound;
 
         await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
         twentyOneGameService.ComputerTurn(dealerHand);
@@ -152,18 +154,22 @@
         if (dealerHand.Score > playerHand.Score || playerHand.IsBust)
         {
             endOfGameMessage = "Dealer wins";
+            endOfGameSound = "Lose4.mp3";
         }
         else if (dealerHand.Score < playerHand.Score || dealerHand.IsBust)
         {
             endOfGameMessage = "You win!";
+            endOfGameSound = "Win1.mp3";
         }
         else
         {
             endOfGameMessage = "It's a draw!";
+            endOfGameSound = "Up1.mp3";
         }
 
         HideNewGameButton = false;
 
+        await jsRuntime.InvokeAsync<string>("PlaySound", $"/sounds/{endOfGameSound}");
         OpenDialog(endOfGameMessage);
     }
 

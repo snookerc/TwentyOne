@@ -176,8 +176,6 @@ a, .btn-link {
 }
 
 .blackjack-drawdeck {
-/*    width: 182px;
-    height: 272px;    */
     float: left;
     height: auto;
 }
@@ -186,8 +184,6 @@ a, .btn-link {
     }
 
 .card-image {
-/*    width: 75%;
-    height: auto; */
     width: 110px;
     height: auto;
 }
@@ -211,9 +207,10 @@ a, .btn-link {
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
+/*.flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
+*/
 
 /* Position the front and back side */
 .flip-card-front, .flip-card-back {
@@ -223,7 +220,7 @@ a, .btn-link {
 }
 
 /* Style the back side (fallback if image is missing) */
-.flip-card-back {
+.flip-card-front {
     background-color: #bbb;
     color: black;
     transform: rotateY(180deg);
@@ -231,28 +228,13 @@ a, .btn-link {
 }
 
 /* Style the front side */
-.flip-card-front {
+.flip-card-back {
     background-color: dodgerblue;
     color: white;
 }
 
-.flip-card.flip .flipper {
+.flip-card.flip .flip-card-inner {
     transform: rotateY(180deg);
-}
-
-@keyframes cardRotate {
-    from {
-        transform: rotateY(0deg);
-        position: absolute;
-        -webkit-backface-visibility: hidden; /* Safari */
-        backface-visibility: hidden;
-    }
-
-    to {
-        transition: transform 0.8s;
-        transform: rotateY(180deg);
-        transform-style: preserve-3d;
-    }
 }
 
 @keyframes throwCard {
