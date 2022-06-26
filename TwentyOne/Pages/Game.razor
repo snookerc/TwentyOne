@@ -20,7 +20,9 @@
     <br />
 </div>
 <div class="player-heading">Dealer</div>
-<div class="@(twentyOneGameService.DealerHand.IsBust ? "player-score-error" : "player-score")">@(twentyOneGameService.DealerHand?.Score.ToString())<br /></div>
+<div class="@(twentyOneGameService.DealerHand.IsBust ? "player-score-error" : "player-score")">
+    @((twentyOneGameService.PlayerHand.IsDone) ? twentyOneGameService.DealerHand?.Score.ToString() : "";)<br />
+</div>
 <br />
 <div class="cardcontainer">
     @if (twentyOneGameService.DealerHand != null)

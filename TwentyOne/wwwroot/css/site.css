@@ -202,7 +202,7 @@ a, .btn-link {
     transition: transform 0.8s;
     transform-style: preserve-3d;
     background-color: transparent;
-    width: 100px;
+    width: 110px;
     height: 100%;
 }
 
