@@ -1,15 +1,27 @@
-﻿namespace TwentyOne.Services
+﻿using TwentyOne.Models;
+
+namespace TwentyOne.Services
 {
     public class TwentyOneGameService
     {
         public Hand DealerHand;
+        public Hand PlayerHand;
+        public CardDeck _cardDeck;
 
         public TwentyOneGameService()
         {
-            DealerHand = new Hand();
-        }
+            _cardDeck = new CardDeck();
 
-        public Hand PlayerHand;
+            _cardDeck.NewDeal();
+
+            DealerHand = new Hand(_cardDeck);
+            PlayerHand = new Hand(_cardDeck);
+
+            DealerHand = new Hand(_cardDeck, 2);
+            DealerHand.Cards[1].IsVisible = false;
+
+            PlayerHand = new Hand(_cardDeck, 2);
+        }
 
         public enum GameResultType
         {

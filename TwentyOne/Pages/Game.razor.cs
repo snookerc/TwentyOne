@@ -14,8 +14,6 @@ namespace TwentyOne.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            twentyOneGameService.DealerHand = new Hand(cardDeck);
-            twentyOneGameService.PlayerHand = new Hand(cardDeck);
             HidePlayerButtons = false;
         }
 
@@ -34,17 +32,10 @@ namespace TwentyOne.Pages
             HidePlayerButtons = true;
             HideNewGameButton = true;
 
-            cardDeck.NewDeal();
-
-            twentyOneGameService.DealerHand = new Hand(cardDeck);
-            twentyOneGameService.PlayerHand = new Hand(cardDeck);
+            twentyOneGameService = new TwentyOneGameService();
             await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardShuffle1.mp3");
-
-            twentyOneGameService.DealerHand = new Hand(cardDeck, 2);
             twentyOneGameService.DealerHand.Cards[1].IsVisible = false;
             //await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
-
-            twentyOneGameService.PlayerHand = new Hand(cardDeck, 2);
             IsLoading = false;
             HidePlayerButtons = false;
             HideNewGameButton = false;
