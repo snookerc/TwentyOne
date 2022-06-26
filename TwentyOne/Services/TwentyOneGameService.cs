@@ -58,11 +58,7 @@ namespace TwentyOne.Services
                 newGameHand.GenerateNewCardInDeck();
             }
 
-            foreach (Card card in newGameHand.Cards)
-            {
-                card.IsVisible = true;
-            }
-
+            newGameHand.Cards.ForEach(card => card.IsVisible = true);
             newGameHand.IsDone = true;
 
             return newGameHand;
