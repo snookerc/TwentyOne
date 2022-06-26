@@ -21,12 +21,12 @@
     <br />
 </div>
 <div class="player-heading">Dealer</div>
-<div class="player-score">@(dealerHand?.Score.ToString())<br /></div>
+<div class="@(twentyOneGameService.DealerHand.IsBust ? "player-score-error" : "player-score")">@(twentyOneGameService.DealerHand?.Score.ToString())<br /></div>
 <br />
 <div class="cardcontainer">
-    @if (dealerHand != null)
+    @if (twentyOneGameService.DealerHand != null)
     {
-        @foreach (var card in dealerHand.Cards)
+        @foreach (var card in twentyOneGameService.DealerHand.Cards)
         {
             <CardPartialView card="card" />
         }
@@ -46,16 +46,16 @@
 </div>
 
 <div class="player-heading">Player</div>
-<div class="@(playerHand.IsBust ? "player-score-error" : "player-score")">@(playerHand?.Score.ToString())<br /></div>
+<div class="@(twentyOneGameService.PlayerHand.IsBust ? "player-score-error" : "player-score")">@(twentyOneGameService.PlayerHand?.Score.ToString())<br /></div>
 <br />
 <div class="cardcontainer">
-    @if (playerHand != null)
+    @if (twentyOneGameService.PlayerHand != null)
     {
-        @foreach (var card in playerHand.Cards)
+        @foreach (var card in twentyOneGameService.PlayerHand.Cards)
         {
             <CardPartialView card="card" />
         }
-        @if (playerHand.IsBust)
+        @if (twentyOneGameService.PlayerHand.IsBust)
         {
             <div class="overlay2">BUST!</div>
         }

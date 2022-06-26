@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
 using TwentyOne.Data;
 using TwentyOne.Models;
@@ -12,8 +10,6 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSingleton<CardDeck>();
 builder.Services.AddMudServices();
-//builder.Services.AddMudBlazorDialog();
-//builder.Services.AddMudBlazorKeyInterceptor();
 
 var app = builder.Build();
 

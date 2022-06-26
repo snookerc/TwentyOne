@@ -11,23 +11,21 @@ namespace TwentyOne.Pages
         private bool HideNewGameButton = false;
         private bool HidePlayerButtons = false;
         private TwentyOneGameService twentyOneGameService = new TwentyOneGameService();
-        private Hand dealerHand;
-        private Hand playerHand;
+
         protected override async Task OnInitializedAsync()
         {
-            dealerHand = new Hand(cardDeck);
-            playerHand = new Hand(cardDeck);
+            twentyOneGameService.DealerHand = new Hand(cardDeck);
+            twentyOneGameService.PlayerHand = new Hand(cardDeck);
             HidePlayerButtons = false;
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-        //TODO:  this doesn't work.  is there a "before render"?
-        //if (firstRender)
-        //{
-        //    await NewGame();
-        //}
+            if (firstRender)
+            {
+                await NewGame();
+            }
         }
 
         private async Task NewGame()
@@ -35,14 +33,18 @@ namespace TwentyOne.Pages
             IsLoading = true;
             HidePlayerButtons = true;
             HideNewGameButton = true;
+
             cardDeck.NewDeal();
-            dealerHand = new Hand(cardDeck);
-            playerHand = new Hand(cardDeck);
+
+            twentyOneGameService.DealerHand = new Hand(cardDeck);
+            twentyOneGameService.PlayerHand = new Hand(cardDeck);
             await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardShuffle1.mp3");
-            dealerHand = new Hand(cardDeck, 2);
-            dealerHand.Cards[1].IsVisible = false;
+
+            twentyOneGameService.DealerHand = new Hand(cardDeck, 2);
+            twentyOneGameService.DealerHand.Cards[1].IsVisible = false;
             //await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
-            playerHand = new Hand(cardDeck, 2);
+
+            twentyOneGameService.PlayerHand = new Hand(cardDeck, 2);
             IsLoading = false;
             HidePlayerButtons = false;
             HideNewGameButton = false;
@@ -51,14 +53,15 @@ namespace TwentyOne.Pages
         private async Task HitMe()
         {
             IsLoading = true;
+
+            twentyOneGameService.PlayerTurn(twentyOneGameService.PlayerHand);
             await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
-            twentyOneGameService.PlayerTurn(playerHand);
-            if (playerHand.IsBust)
+
+            if (twentyOneGameService.PlayerHand.IsBust)
             {
                 HidePlayerButtons = true;
-            }
+            };
 
-            ;
             IsLoading = false;
         }
 
@@ -66,24 +69,26 @@ namespace TwentyOne.Pages
         {
             HidePlayerButtons = true;
             HideNewGameButton = true;
-            string endOfGameMessage;
-            string endOfGameSound;
+            string endOfGameMessage = String.Empty;
+            string endOfGameSound = String.Empty;
+
             await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
-            twentyOneGameService.ComputerTurn(dealerHand);
-            if (dealerHand.Score > playerHand.Score || playerHand.IsBust)
+            twentyOneGameService.ComputerTurn(twentyOneGameService.DealerHand);
+
+            switch (twentyOneGameService.GameResult)
             {
-                endOfGameMessage = "Dealer wins";
-                endOfGameSound = "Lose4.mp3";
-            }
-            else if (dealerHand.Score < playerHand.Score || dealerHand.IsBust)
-            {
-                endOfGameMessage = "You win!";
-                endOfGameSound = "Win1.mp3";
-            }
-            else
-            {
-                endOfGameMessage = "It's a draw!";
-                endOfGameSound = "Up1.mp3";
+                case TwentyOneGameService.GameResultType.Win:
+                    endOfGameMessage = "You win!";
+                    endOfGameSound = "Win1.mp3";
+                    break;
+                case TwentyOneGameService.GameResultType.Lose:
+                    endOfGameMessage = "Dealer wins";
+                    endOfGameSound = "Lose4.mp3";
+                    break;
+                case TwentyOneGameService.GameResultType.Draw:
+                    endOfGameMessage = "It's a draw!";
+                    endOfGameSound = "Up1.mp3";
+                    break;
             }
 
             HideNewGameButton = false;
@@ -93,7 +98,7 @@ namespace TwentyOne.Pages
 
         private void OpenDialog(string message)
         {
-            var options = new DialogOptions{CloseOnEscapeKey = true, DisableBackdropClick = true};
+            var options = new DialogOptions { CloseOnEscapeKey = true, DisableBackdropClick = true };
             var dialog = DialogService.Show<Dialog>(message, options);
         }
     }
