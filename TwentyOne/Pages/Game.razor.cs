@@ -91,6 +91,7 @@ namespace TwentyOne.Pages
         {
             var options = new DialogOptions { CloseOnEscapeKey = true, DisableBackdropClick = true };
             var dialog = DialogService.Show<Dialog>(message, options);
+
         }
     }
 }
