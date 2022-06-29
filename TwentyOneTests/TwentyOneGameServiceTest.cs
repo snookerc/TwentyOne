@@ -9,6 +9,7 @@ namespace TwentyOneTests
         [Fact]
         public void GivenADealerHandWithTwoCards_When16Points_ThenDealerHits()
         {
+            //TODO:  AutoFaker
             var dealerHand = new Hand(_cardDeck, 0);
             Card card1 = _cardDeck.GetNextCard();
             card1.CardNumber = 8;
@@ -26,6 +27,7 @@ namespace TwentyOneTests
         [Fact]
         public void GivenADealerHandWithTwoCards_When17Points_ThenDealerStands()
         {
+            //TODO:  AutoFaker
             var dealerHand = new Hand(_cardDeck, 0);
             Card card1 = _cardDeck.GetNextCard();
             card1.CardNumber = 8;
@@ -43,6 +45,7 @@ namespace TwentyOneTests
         [Fact]
         public void GivenPlayerScoreMoreThanDealerScore_ThenPlayerWins()
         {
+            //TODO:  AutoFaker
             _gameService = new TwentyOneGameService();
             _gameService.DealerHand.Cards[0].CardNumber = 1;
             _gameService.DealerHand.Cards[1].CardNumber = 1;
