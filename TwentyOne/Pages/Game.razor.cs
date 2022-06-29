@@ -20,10 +20,11 @@ namespace TwentyOne.Pages
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-            if (firstRender)
-            {
-                await NewGame();
-            }
+            //TODO:  need to launch the new game BEFORE render
+            //if (firstRender)
+            //{
+            //    await NewGame();
+            //}
         }
 
         private async Task NewGame()
