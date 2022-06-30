@@ -9,6 +9,7 @@ namespace TwentyOneTests
         [Fact]
         public void GivenADealerHandWithTwoCards_When16Points_ThenDealerHits()
         {
+            //var fakeHand = new AutoFaker<Hand>().RuleFor<Card>(c => c.Cards.Count.Should(2) = 8);
             var dealerHand = new Hand(_cardDeck, 0);
             Card card1 = _cardDeck.GetNextCard();
             card1.CardNumber = 8;

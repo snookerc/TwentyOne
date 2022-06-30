@@ -32,9 +32,11 @@ namespace TwentyOne.Pages
             HidePlayerButtons = true;
             HideNewGameButton = true;
 
-            twentyOneGameService = new TwentyOneGameService();
             await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardShuffle1.mp3");
+
+            twentyOneGameService = new TwentyOneGameService();
             twentyOneGameService.DealerHand.Cards[1].IsVisible = false;
+  
             //await jsRuntime.InvokeAsync<string>("PlaySound", "/sounds/CardFlip1.mp3");
             IsLoading = false;
             HidePlayerButtons = false;
@@ -60,6 +62,8 @@ namespace TwentyOne.Pages
         {
             HidePlayerButtons = true;
             HideNewGameButton = true;
+            StateHasChanged();
+
             string endOfGameMessage = String.Empty;
             string endOfGameSound = String.Empty;
 
